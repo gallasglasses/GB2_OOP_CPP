@@ -13,13 +13,17 @@ void Stack::reset()
 
 bool Stack::push(int value)
 {
-    if (lengthStack > 0 || lengthStack < SIZE)
+    if (lengthStack < SIZE)
     {
         array[lengthStack] = value;
         lengthStack++;
         return true;
     }
-    else return false;
+    else
+    {
+        std::cout << "Stack is full!" << std::endl;
+        return false;
+    }
 }
 
 int Stack::pop()
