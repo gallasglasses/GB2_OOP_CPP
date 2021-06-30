@@ -33,7 +33,11 @@ int Stack::pop()
             return array[i];
         }
     }
-    else std::cout << "Stack is empty!\n";
+    else
+    {
+        std::cout << "Stack is empty!\n";
+        return 0;
+    }
 }
 
 void Stack::print()
