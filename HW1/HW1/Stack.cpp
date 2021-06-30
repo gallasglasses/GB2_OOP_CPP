@@ -1,5 +1,4 @@
 #include "Stack.h"
-#include <iostream> 
 
 using namespace EX3;
 

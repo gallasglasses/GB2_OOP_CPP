@@ -1,5 +1,4 @@
 #include "RGBA.h"
-#include <iostream> 
 
 using namespace EX2;
 

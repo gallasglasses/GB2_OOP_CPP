@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream> 
+
 namespace EX1
 {
     class Power

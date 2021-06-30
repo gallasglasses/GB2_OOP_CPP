@@ -1,5 +1,4 @@
 #include "Power.h"
-#include <iostream> 
 
 using namespace EX1;
 
