@@ -1,7 +1,7 @@
 #include "GrannySmith.h"
 
 GrannySmith::GrannySmith()
-	: Apple("Granny Smith ", "green")
+	: Apple("Granny Smith apple", "green")
 {
 	
 }

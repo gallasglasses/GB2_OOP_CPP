@@ -19,9 +19,10 @@ private:
 public:
 	Person(std::string name = "", int age = 0, double weight = 0.0, Sex sex = MALE);
 	
-	std::string getName();
-	int getAge();
-	double getWeight();
+	std::string getName() const;
+	int getAge() const;
+	double getWeight() const;
+	Sex getSex() const;
 
 	void setAge(int age);
 	void setWeight(double weight);

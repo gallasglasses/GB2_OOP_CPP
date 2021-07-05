@@ -25,8 +25,8 @@ int main()
     std::vector <Student> listStudent;
     Student Ivan("Ivanov Ivan Ivanovich", 26, 75.6, 5, MALE);
     listStudent.push_back(Ivan);
-    Student Petr("Petrov Petr Petrovich", 21, 66.6, 3, MALE);
-    listStudent.push_back(Petr);
+    Student Katya("Petrova Katya Petrovna", 21, 66.6, 3, FEMALE);
+    listStudent.push_back(Katya);
     Student Maxim("Maximov Maxim Maximovich", 19, 57.2, 1, MALE);
     Maxim.incrementYearStudy();
     Maxim.setAge(20);
@@ -45,7 +45,7 @@ int main()
     std::cout << "My " << b.getName() << " is " << b.getColour() << ".\n";
     std::cout << "My " << c.getName() << " is " << c.getColour() << ".\n";
 
-
+    /*
     //This is 3 exercise
     {
         void Game()
@@ -217,13 +217,14 @@ int main()
             }
         };
     }
-
+    */
     return 0;
 }
 
 //This is 1 exercise
 void printStudentByID(std::vector <Student> list)
 {
+    std::cout << "The list includes " << Student::s_idGenerator - 1<< " students\n";
     std::cout << "Enter student ID : ";
     int numberID;
     std::cin >> numberID;
@@ -234,6 +235,7 @@ void printStudentByID(std::vector <Student> list)
         {
             std::cout << "Student ID " << list[count].getID() << "\n";
             std::cout << "Name : " << list[count].getName() << "\n";
+            std::cout << "Sex : " << static_cast<char>(list[count].getSex()) << "\n";
             std::cout << "Year : " << list[count].getYearStudy() << "\n";
             std::cout << "Age : " << list[count].getAge() << "\n";
             std::cout << "Weight : " << list[count].getWeight() << "\n" << std::endl;

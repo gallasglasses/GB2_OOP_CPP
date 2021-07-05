@@ -11,7 +11,7 @@ int Student::getID() const
 	return m_id;
 }
 
-int Student::getYearStudy()
+int Student::getYearStudy() const
 { 
 	return m_yearStudy;
 }
