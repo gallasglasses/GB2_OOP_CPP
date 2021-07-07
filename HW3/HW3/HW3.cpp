@@ -99,18 +99,23 @@ int main()
 
     Figure* figure1 = new Circle();
     figure1->area();
+    delete figure1;
 
     Figure* figure2 = new Parallelogram();
     figure2->area();
+    delete figure2;
 
     Figure* figure3 = new Rectangle();
     figure3->area();
+    delete figure3;
 
     Figure* figure4 = new Square();
     figure4->area();
+    delete figure4;
 
     Figure* figure5 = new Rhombus();
     figure5->area();
+    delete figure5;
 
     std::cout << "__________________________________________________________\n\n";
 

@@ -5,6 +5,7 @@
 class Rectangle : public Parallelogram
 {
 public:
-	void area();
+	void area() override;
+	~Rectangle() override;
 };
 

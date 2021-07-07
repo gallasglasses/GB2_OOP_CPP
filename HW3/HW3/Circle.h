@@ -5,6 +5,7 @@
 class Circle : public Figure
 {
 public:
-	void area();
+	void area() override;
+	~Circle() override;
 };
 

@@ -5,6 +5,7 @@
 class Parallelogram : public Figure
 {
 public:
-	void area();
+	void area() override;
+	~Parallelogram() override;
 };
 

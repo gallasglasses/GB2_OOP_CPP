@@ -5,6 +5,7 @@
 class Square : public Parallelogram
 {
 public:
-	void area();
+	void area() override;
+	~Square() override;
 };
 

@@ -5,6 +5,7 @@
 class Rhombus : public Parallelogram
 {
 public:
-	void area();
+	void area() override;
+	~Rhombus() override;
 };
 

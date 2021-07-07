@@ -5,5 +5,6 @@ class Figure
 {
 public:
 	virtual void area();
+	virtual ~Figure();
 };
 
