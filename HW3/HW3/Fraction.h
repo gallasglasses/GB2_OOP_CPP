@@ -8,7 +8,7 @@ private:
 	int m_denominator = 1;
 
 public:
-	Fraction(int numerator = 0, int denominator = 1) const;
+	Fraction(int numerator = 0, int denominator = 1);
 	void printFraction() const;
 	int Reduction(int numerator, int denominator) const;
 

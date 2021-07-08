@@ -1,6 +1,6 @@
 #include "Fraction.h"
 
-Fraction::Fraction(int numerator, int denominator) const
+Fraction::Fraction(int numerator, int denominator)
 {
 	m_numerator = numerator;
 	m_denominator = denominator;
