@@ -4,7 +4,7 @@
 class Figure
 {
 public:
-	virtual void area();
+	virtual void area() = 0;
 	virtual ~Figure();
 };
 
