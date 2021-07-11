@@ -32,7 +32,10 @@ void Hand::clear()
 {
 	std::vector<Card*>::iterator it = vCardsOnHand.begin();
 	for (; it != vCardsOnHand.end(); it++)
-		delete *it;
+	{
+		delete* it;
+		*it = nullptr;
+	}
 	vCardsOnHand.clear();
 }
 
