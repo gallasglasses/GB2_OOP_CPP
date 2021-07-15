@@ -9,11 +9,6 @@ GenericPlayer::GenericPlayer(const std::string& pName)
 
 }
 
-bool GenericPlayer::isHitting()
-{
-
-}
-
 bool GenericPlayer::isBoosted()
 {
 	return getValue() > 21 ? true : false;
