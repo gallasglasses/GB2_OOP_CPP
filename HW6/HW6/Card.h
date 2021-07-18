@@ -44,7 +44,7 @@ private:
     friend std::ostream& operator<<(std::ostream& out, const Card& card)
     {
         const std::string CardRank[] = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
-        const std::string CardSuit[] = { "C", "D", "H", "S" };
+        const std::string CardSuit[] = { "\003", "\004", "\005", "\006" };
         return (card.isCardOpen) ? (out << CardRank[card.cardFace] << " " << CardSuit[card.cardSuit]) : (out << "XX");
     }
 };
