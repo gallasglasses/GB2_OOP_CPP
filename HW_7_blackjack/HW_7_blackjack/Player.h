@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GenericPlayer.h"
+#include "Validation.h"
 
 class Player : public GenericPlayer
 {

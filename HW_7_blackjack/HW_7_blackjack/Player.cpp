@@ -9,10 +9,17 @@ Player::Player(const std::string& name)
 bool Player::isHitting() const
 {
 	char answer;
+	bool isSetAnswer = true;
 	std::cout << "Player " << playerName << ", do you need another card?\nEnter 'Y' - Yes or 'N' - No : ";
-	std::cin >> answer;
-	std::cout << "\n";
-	return (tolower(answer) == 'y') ? true : false;
+	while (isSetAnswer)
+	{
+		if ((answer = tolower(Validation::getAnswer())) != 'n')
+		{
+			if (answer == '\n')
+				continue;
+		}
+		return isSetAnswer = (answer == 'y') ? true : false;
+	}
 }
 
 void Player::Win() const

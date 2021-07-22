@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <vector>
 
+#include "Validation.h"
 #include "Game.h"
 
 const int MAX_N_PLAYERS = 6;
@@ -17,16 +18,30 @@ int main()
     {
         Game newGame(vNames);
         newGame.Play();
-        std::cout << "Play again (enter 'Y')\nNew players (enter 'N')\nQuiet (enter 'Q') : ";
-        std::cin >> answer;
-        isContinue = (tolower(answer) == 'y' || tolower(answer) == 'n') ? true : false;
-        std::cout << "\x1B[2J\x1B[H";
-        if (tolower(answer) == 'n')
+        std::cout << "Do wou want play again?\nEnter 'Y' - Yes or 'N' - No : ";
+        if ((answer = tolower(Validation::getAnswer())) == 'y')
         {
-            newGame.~Game();
-            vNames.clear();
-            vNames = vGetNamePlayers();
+            if (answer == '\n')
+                continue;
+            std::cout << "\x1B[2J\x1B[H";
         }
+        if (answer == 'n')
+        {
+            std::cout << "New game?\nEnter 'Y' - Yes or 'N' - No : ";
+            if ((answer = tolower(Validation::getAnswer())) == 'y')
+            {
+                std::cout << "\x1B[2J\x1B[H";
+                newGame.~Game();
+                vNames.clear();
+                vNames = vGetNamePlayers();
+            }
+            if (answer == 'n')
+            {
+                if (answer == '\n')
+                    continue;
+            }
+        }
+        isContinue = (answer == 'y') ? true : false;
     }
     return 0;
 }
@@ -43,19 +58,41 @@ std::vector<std::string> vGetNamePlayers()
         std::string name;
         std::cout << "Enter name for " << ++countPlayers << " player : ";
         std::cin >> name;
-        names.push_back(name);
+        if (names.size() == 0)
+        {
+            names.push_back(name);
+        }
+        else
+        {
+            auto it = std::find(names.begin(), names.end(), name);
+            while (it != names.end())
+            {
+                std::cout << "Enter another name for " << countPlayers << " player : ";
+                std::cin >> name;
+                it = std::find(names.begin(), names.end(), name);
+            }
+                names.push_back(name);
+        }
+
         if (countPlayers == MAX_N_PLAYERS)
         {
             std::cout << "\x1B[2J\x1B[H";
             isSetNames = false;
         }
-        else
+        else if (countPlayers < MAX_N_PLAYERS)
         {
             std::cout << "Do you need another player?\nEnter 'Y' - Yes or 'N' - No : ";
-            std::cin >> answer;
-            isSetNames = (tolower(answer) == 'y') ? true : false;
+            if ((answer = tolower(Validation::getAnswer())) != 'n')
+            {
+                if (answer == '\n')
+                    continue;
+            }
+            isSetNames = (answer == 'y') ? true : false;
             if (countPlayers < MAX_N_PLAYERS && !isSetNames)
+            {
                 std::cout << "\x1B[2J\x1B[H";
+                break;
+            }
         }
     }
     return names;
