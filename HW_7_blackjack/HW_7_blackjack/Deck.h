@@ -2,11 +2,15 @@
 #include "Card.h"
 #include "Hand.h"
 #include "GenericPlayer.h"
+#include "Field.h"
+
 #include <algorithm>
 #include <random>
 
 class Deck : public Hand
 {
+private:
+	Field field;
 public:
 	const int MAX_CARD_DECK = 52;
 

@@ -2,6 +2,7 @@
 #include "House.h"
 #include "Deck.h"
 #include "Player.h"
+#include "Field.h"
 
 #include <iostream>
 #include <vector>
@@ -14,6 +15,7 @@ private:
 
 	Deck gameDeck;
 	House gameHandHouse;
+	Field field;
 	std::vector<Player> vGamePlayers;
 
 public:

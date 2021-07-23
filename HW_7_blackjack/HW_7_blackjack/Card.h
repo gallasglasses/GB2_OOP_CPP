@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 
+#include "Colours.h"
+
 class Card
 {
 public:
@@ -19,6 +21,10 @@ public:
 
     int getValue() const;
     void FlipCard();
+    bool getCardOpen();
+    std::string getCardRank(const Card& card);
+    std::string getCardSuit(const Card& card);
+
     ~Card();
 
 private:
@@ -31,6 +37,13 @@ private:
     {
         const std::string sCardRank[] = { "0", "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
         const std::string sCardSuit[] = { "\005", "\004", "\003", "\006" };
-        return (card.isCardOpen) ? out << sCardRank[card.cardFace] << " " << sCardSuit[card.cardSuit] : out << "XX";
+        if (card.isCardOpen)
+        {
+            if (card.cardSuit == DIAMONDS || card.cardSuit == HEARTS)
+                out << Colours::Code::S_BRICHT_RED << sCardRank[card.cardFace] << " " << sCardSuit[card.cardSuit] << Colours::Code::DEFAULT;
+            else out << Colours::Code::S_BRICHT_BLACK << sCardRank[card.cardFace] << " " << sCardSuit[card.cardSuit] << Colours::Code::DEFAULT;
+        }
+        else out << " XX X";
+        return out;
     }
 };
