@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include <vector>
 #include <sstream>
-#include <vld.h>
+//#include <vld.h>
 #include <windows.h>
 #include <conio.h>
 
@@ -10,10 +10,10 @@
 #include "Field.h"
 #include "Game.h"
 
-#define CRTDBG_MAP_ALLOC
-#include <crtdbg.h>
-#define DEBUG_NEW new(_NORMAL_BLOCK, __FILE, LINE)
-#define new DEBUG_NEW
+//#define CRTDBG_MAP_ALLOC
+//#include <crtdbg.h>
+//#define DEBUG_NEW new(_NORMAL_BLOCK, __FILE, LINE)
+//#define new DEBUG_NEW
 
 const int MAX_N_PLAYERS = 6;
 Field field;
@@ -33,7 +33,7 @@ int main()
     system("pause");
     //std::cout << "\x1B[2J\x1B[H";
     field.clearConsole();
-    
+    std::vector<std::string> vNames = vGetNamePlayers();
     isContinue = true;
     while (isContinue)
     {
@@ -50,8 +50,6 @@ int main()
             isContinue = !isContinue;
         }*/
 
-
-        std::vector<std::string> vNames = vGetNamePlayers();
         Game newGame(vNames);
         newGame.Play();
         std::cout << "\n";
@@ -85,7 +83,7 @@ int main()
         isContinue = (answer == 'y') ? true : false;
     }
 
-    _CrtDumpMemoryLeaks();
+    /*_CrtDumpMemoryLeaks();*/
 
     return 0;
 }

@@ -4,5 +4,5 @@
 namespace Validation
 {
 	char getAnswer();
-	size_t getAnswerMenu();
+	//size_t getAnswerMenu();
 }

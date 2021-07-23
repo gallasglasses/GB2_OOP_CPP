@@ -77,10 +77,10 @@ class Field
                                      +-------------------------------------+
     )";
 
-    const wchar_t* Spades = L"\u2660";
+    /*const wchar_t* Spades = L"\u2660";
     const wchar_t* Clubs = L"\u2663";
     const wchar_t* Diamonds = L"\u2666";
-    const wchar_t* Hearts = L"\u2665";
+    const wchar_t* Hearts = L"\u2665";*/
 
 public:
     Field();
