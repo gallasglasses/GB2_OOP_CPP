@@ -3,6 +3,10 @@
 #include <sstream>
 #include <windows.h>
 #include <conio.h>
+#include <vector>
+
+#include "Validation.h"
+#include "Colours.h"
 
 class Field
 {
@@ -73,7 +77,7 @@ class Field
                            |^ ^ ^| | +-------------------------------------+ | /.\ | |
                            |^ ^ ^| | |            2. MULTIPLAYER           | |(_._)| |
                            |___0I| | +-------------------------------------+ |  |  |_|
-                             |_____| |               3. EXIT               | |____V|
+                             |_____| |                3. BACK              | |____V|
                                      +-------------------------------------+
     )";
 
@@ -82,11 +86,39 @@ class Field
     const wchar_t* Diamonds = L"\u2666";
     const wchar_t* Hearts = L"\u2665";*/
 
+    bool isContinue = true,
+        isSinglePlayer = false,
+        isMultiPlayer = false,
+        isMenu = true;
+
+    const int MAX_N_MPLAYERS = 6;
+    const int MAX_N_SPLAYERS = 1;
+
 public:
     Field();
     std::string titleBJ();
     std::string titleMenu();
     std::string titlePlayer();
+    std::vector<std::string> vGetNamePlayers();
+    std::vector<std::string> names;
+
+    int maxPlayers = 0;
+
+    void setContinue();
+    void setSingle();
+    void setMulti();
+    void setMenu();
+    void sizeConsole();
+    void menu();
+
+    bool getContinue() const;
+    bool getSingle() const;
+    bool getMulti() const;
+    bool getMenu() const;
+    
+    int getMaxSPlayers() const;
+    int getMaxMPlayers() const;
+
     void clearConsole();
 
     ~Field();

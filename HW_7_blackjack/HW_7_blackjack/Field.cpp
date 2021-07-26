@@ -26,6 +26,181 @@ std::string Field::titlePlayer()
     return titleReturn.str();
 }
 
+void Field::setContinue()
+{
+    isContinue = !isContinue;
+}
+
+void Field::setSingle()
+{
+    isSinglePlayer = !isSinglePlayer;
+}
+
+void Field::setMulti()
+{
+    isMultiPlayer = !isMultiPlayer;
+}
+
+void Field::setMenu()
+{
+    isMenu = !isMenu;
+}
+
+bool Field::getContinue() const
+{
+    return isContinue;
+}
+
+bool Field::getSingle() const
+{
+    return isSinglePlayer;
+}
+
+bool Field::getMulti() const
+{
+    return isMultiPlayer;
+}
+
+bool Field::getMenu() const
+{
+    return isMenu;
+}
+
+
+int Field::getMaxSPlayers() const
+{
+    return MAX_N_SPLAYERS;
+}
+
+int Field::getMaxMPlayers() const
+{
+    return MAX_N_MPLAYERS;
+}
+
+void Field::menu()
+{
+    while (isMenu)
+    {
+        clearConsole();
+        std::cout << Colours::Code::S_BRICHT_GREEN << titleMenu() << Colours::Code::DEFAULT << "\n";
+        switch (_getch())
+        {
+        case '1':
+            clearConsole();
+            std::cout << Colours::Code::S_BRICHT_GREEN << titlePlayer() << Colours::Code::DEFAULT << "\n";
+            break;
+        case '2':
+            break;
+        case '3':
+            //clearConsole();
+            setMenu();
+            setContinue();
+            break;
+        default:
+            break;
+        }
+        if (!getMenu())
+            break;
+        switch (_getch())
+        {
+        case '1':
+            setSingle();
+            maxPlayers = getMaxSPlayers();
+            names = vGetNamePlayers();
+            clearConsole();
+            setMenu();
+            break;
+        case '2':
+            setMulti();
+            maxPlayers = getMaxMPlayers();
+            names = vGetNamePlayers();
+            clearConsole();
+            setMenu();
+            break;
+        case '3':
+            clearConsole();
+            std::cout << Colours::Code::S_BRICHT_GREEN << titleMenu() << Colours::Code::DEFAULT << "\n";
+            break;
+        default:
+            break;
+        }
+        
+    }
+}
+
+std::vector<std::string> Field::vGetNamePlayers()
+{
+    std::vector<std::string> names;
+    int countPlayers = 0;
+    bool isSetNames = true;
+    char answer;
+    while (isSetNames)
+    {
+        std::string name;
+        std::cout << "Enter name for " << ++countPlayers << " player : ";
+        std::cin >> name;
+        if (names.size() == 0)
+        {
+            names.push_back(name);
+        }
+        else
+        {
+            auto it = std::find(names.begin(), names.end(), name);
+            while (it != names.end())
+            {
+                std::cout << "Enter another name for " << countPlayers << " player : ";
+                std::cin >> name;
+                it = std::find(names.begin(), names.end(), name);
+            }
+            names.push_back(name);
+        }
+
+        if (countPlayers == maxPlayers)
+        {
+            clearConsole();
+            //std::cout << "\x1B[2J\x1B[H";
+            isSetNames = false;
+        }
+        else if (countPlayers < maxPlayers)
+        {
+            std::cout << "Do you need another player?\nEnter 'Y' - Yes or 'N' - No : \n";
+            switch (_getch())
+            {
+            case 'y':
+                isSetNames = true;
+                continue;
+            case 'Y':
+                isSetNames = true;
+                continue;
+            case 'n':
+                isSetNames = false;
+                break;
+            case 'N':
+                isSetNames = false;
+                break;
+            default:
+                continue;
+            }
+            if (countPlayers < maxPlayers && !isSetNames)
+            {
+                clearConsole();
+                //std::cout << "\x1B[2J\x1B[H";
+                break;
+            }
+        }
+    }
+    return names;
+}
+
+void Field::sizeConsole()
+{
+    HWND hwnd = GetConsoleWindow();
+    if (hwnd != NULL)
+    {
+        MoveWindow(hwnd, 150, 150, 950, 600, TRUE);
+    }
+}
+
 void Field::clearConsole() {
     COORD topLeft = { 0, 0 };
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
