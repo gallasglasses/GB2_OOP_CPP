@@ -1,7 +1,9 @@
 ﻿// HW8.cpp
 
 #include <iostream>
+#include <sstream>
 
+double numericValidation();
 
 template < typename T >
 const double& div(const T& num1,const T& num2)
@@ -32,9 +34,9 @@ int main()
     double valueDiv = 0;
 
     std::cout << "Enter first number : \n";
-    std::cin >> num1;
+    num1 = numericValidation();
     std::cout << "Enter second number : \n";
-    std::cin >> num2;
+    num2 = numericValidation();
     try
     {
         valueDiv = div(num1, num2);
@@ -62,7 +64,7 @@ int main()
     содержащее данные объекта исключения.
     =======================================================================================================================================
     */
-    int n;
+    double n;
     Bar bar;
     
     try
@@ -70,8 +72,8 @@ int main()
         do
         {
             std::cout << "Enter number : ";
-            std::cin >> n;
-            bar.setBar(static_cast<float>(n));
+            n = numericValidation();
+            bar.setBar(n);
             std::cout << "y = " << bar.getBar() << "\n";
         } 
         while (n != 0);
@@ -108,4 +110,104 @@ int main()
 #pragma endregion
 
     return 0;
+}
+
+double numericValidation()
+{
+    std::string userInput = "";
+
+    int numCount = 0,
+        floatCount = 0;
+    double userConvertedNum;
+
+    bool isIntNumber = false;
+    bool isExit = false;
+
+    do
+    {
+        std::cin >> userInput;
+        if (userInput[0] == '#')
+        {
+            isExit = true;
+            numCount = 0;
+            break;
+        }
+        else
+        {
+            for (size_t i = 0; i < userInput.size(); i++)
+            {
+                if (isdigit(userInput[i]))
+                {
+                    numCount++;
+                    isIntNumber = true;
+                }
+                else if (isalnum(userInput[i]))
+                {
+                    isIntNumber = false;
+                    numCount = 0;
+                    break;
+                }
+                if (userInput[i] == '.')
+                {
+                    numCount++;
+                    floatCount++;
+                    isIntNumber = true;
+                }
+            }
+        }
+        if (userInput[0] == '-')
+        {
+            numCount++;
+            for (size_t i = numCount; i < userInput.size(); i++)
+            {
+                if (isdigit(userInput[i]))
+                {
+                    numCount++;
+                    isIntNumber = true;
+                }
+                else if (isalnum(userInput[i]))
+                {
+                    isIntNumber = false;
+                    numCount = 0;
+                    break;
+                }
+                if (userInput[i] == '.')
+                {
+                    numCount++;
+                    floatCount++;
+                    isIntNumber = true;
+                }
+            }
+        }
+        if (floatCount > 1)
+        {
+            isIntNumber = false;
+            numCount = 0;
+            break;
+        }
+        if (numCount == userInput.size())
+        {
+            std::stringstream ssInput(userInput);
+            ssInput >> userConvertedNum;
+        }
+        else
+        {
+            if (isIntNumber == false && numCount == 0)
+                std::cout << "It's not a number!\nEnter the number (only digits without letters, symbols): ";
+            else if (isExit == true)
+                break;
+
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            numCount = 0;
+            isIntNumber = false;
+        }
+
+    } while (isIntNumber == false && isExit == false);
+
+    if (isExit == true)
+        userConvertedNum = 0;
+
+    return static_cast<double>(userConvertedNum);
 }

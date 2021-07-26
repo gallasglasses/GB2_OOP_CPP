@@ -11,6 +11,10 @@ Robot::Robot()
 		ptrArr[i] = new std::string[iN];
 	}
 
+	std::cout << "Hello!\n";
+	std::cout << " " << robot <<" It's your robot Unit-e!\nYou can control it.\n";
+	std::cout << "'w' for Up\n's' for Down\n'a' for Left\n'd' for Right\n'q' for Quit\nBe careful! Don't break it!\n";
+	system("pause");
 	for (int i = 0; i < iN; i++)
 	{
 		for (int j = 0; j < iN; j++)

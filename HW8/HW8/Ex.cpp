@@ -1,12 +1,12 @@
 #include "Ex.h"
 
-Ex::Ex(float x)
+Ex::Ex(double x)
 	: m_x(x)
 {
 
 }
 
-float Ex::getEx()
+double Ex::getEx()
 {
 	return m_x;
 }

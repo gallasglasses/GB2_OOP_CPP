@@ -1,10 +1,10 @@
 #pragma once
 class Ex
 {
-	float m_x;
+	double m_x;
 public:
-	Ex(float x);
-	float getEx();
+	Ex(double x);
+	double getEx();
 	~Ex();
 };
 

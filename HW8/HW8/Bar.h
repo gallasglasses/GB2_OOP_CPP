@@ -3,12 +3,12 @@
 
 class Bar
 {
-	float m_y;
+	double m_y;
 public:
 	Bar();
 
-	void setBar(float y);
-	float getBar();
+	void setBar(double y);
+	double getBar();
 
 	~Bar();
 

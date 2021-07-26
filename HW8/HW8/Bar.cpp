@@ -6,14 +6,14 @@ Bar::Bar()
 
 }
 
-void Bar::setBar(float a)
+void Bar::setBar(double a)
 {
 	if (m_y + a > 100)
 		throw Ex (a*m_y);
 	else m_y = a;
 }
 
-float Bar::getBar()
+double Bar::getBar()
 {
 	return m_y;
 }
