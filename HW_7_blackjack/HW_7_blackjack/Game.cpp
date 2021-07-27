@@ -21,47 +21,44 @@ void Game::Play()
 		for (it = vGamePlayers.begin(); it != vGamePlayers.end(); ++it)
 		{
 			gameDeck.Deal(*it);
+			Print();
+			std::this_thread::sleep_for(std::chrono::nanoseconds(500000000));
 		}
 		gameDeck.Deal(gameHandHouse);
+		if(i == 0)
+			gameHandHouse.FlipFirstCard();
+		Print();
+		std::this_thread::sleep_for(std::chrono::nanoseconds(500000000));
 	}
-	gameHandHouse.FlipFirstCard();
-
-	std::cout << gameHandHouse << std::endl;
-
-	std::cout << std::setfill('*') << std::setw(20);
-	std::cout << "\n";
+	Print();
 	for (it = vGamePlayers.begin(); it != vGamePlayers.end(); ++it)
 	{
-		std::cout << (*it) << std::endl;
-	}
-
-	for (it = vGamePlayers.begin(); it != vGamePlayers.end(); ++it)
-	{
-		gameDeck.AdditionalCards(*it);
-		field.clearConsole();
-		//std::cout << "\x1B[2J\x1B[H";
-		std::cout << gameHandHouse << std::endl;
-		std::cout << std::setfill('*') << std::setw(20);
-		std::cout << "\n";
-		for (std::vector<Player>::iterator jt = vGamePlayers.begin(); jt != vGamePlayers.end(); ++jt)
+		while (it->isHitting() && !(it->isBoosted()))
 		{
-			std::cout << (*jt) << std::endl;
+			gameDeck.AdditionalCards(*it);
+			std::this_thread::sleep_for(std::chrono::nanoseconds(200000000));
+			Print();
+			if (it->isBoosted())
+			{
+				break;
+			}
 		}
-
+		Print();
 	}
 	gameHandHouse.FlipFirstCard();
-	gameDeck.AdditionalCards(gameHandHouse);
-	field.clearConsole();
-	//std::cout << "\x1B[2J\x1B[H";
-
-	std::cout << gameHandHouse << std::endl;
-	std::cout << std::setfill('*') << std::setw(30);
-	std::cout << "\n";
-	for (it = vGamePlayers.begin(); it != vGamePlayers.end(); ++it)
+	std::this_thread::sleep_for(std::chrono::nanoseconds(600000000));
+	Print();
+	
+	while (gameHandHouse.isHitting() && !(gameHandHouse.isBoosted()))
 	{
-		std::cout << (*it) << std::endl;
+		gameDeck.AdditionalCards(gameHandHouse);
+		std::this_thread::sleep_for(std::chrono::nanoseconds(600000000));
+		Print();
+		if (gameHandHouse.isBoosted())
+		{
+			break;
+		}
 	}
-
 	int result = 0,
 		count = 0,
 		indexResult = 0;
@@ -124,6 +121,19 @@ void Game::Play()
 		it->Clear();
 	}
 	gameHandHouse.Clear();
+}
+
+void Game::Print()
+{
+	field.clearConsole();
+	std::vector<Player>::iterator it;
+	std::cout << gameHandHouse << std::endl;
+	std::cout << std::setfill('*') << std::setw(30);
+	std::cout << "\n";
+	for (it = vGamePlayers.begin(); it != vGamePlayers.end(); ++it)
+	{
+		std::cout << (*it) << std::endl;
+	}
 }
 
 Game::~Game()

@@ -8,6 +8,8 @@
 #include <vector>
 #include <algorithm>
 #include <iomanip>
+#include <thread>
+#include <chrono>
 
 class Game
 {
@@ -21,5 +23,6 @@ private:
 public:
 	Game(std::vector<std::string>& vNamePlayers);
 	void Play();
+	void Print();
 	~Game();
 };

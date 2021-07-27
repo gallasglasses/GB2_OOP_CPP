@@ -8,17 +8,21 @@ Player::Player(const std::string& name)
 
 bool Player::isHitting() const
 {
-	char answer;
 	bool isSetAnswer = true;
-	std::cout << "Player " << playerName << ", do you need another card?\nEnter 'Y' - Yes or 'N' - No : ";
+	std::cout << "Player " << playerName << ", do you need another card?\nEnter 'Y' - Yes or 'N' - No\n";
 	while (isSetAnswer)
 	{
-		if ((answer = tolower(Validation::getAnswer())) != 'n')
-		{
-			if (answer == '\n')
-				continue;
-		}
-		return isSetAnswer = (answer == 'y') ? true : false;
+        switch (_getch())
+        {
+        case 'y':
+            return isSetAnswer;
+        case 'Y':
+            return isSetAnswer;
+        case 'n':
+            return !isSetAnswer;
+        case 'N':
+            return !isSetAnswer;
+        }
 	}
 }
 

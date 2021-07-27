@@ -17,10 +17,6 @@ protected:
 		out << "     " << Colours::Code::S_BRICHT_GREEN << player.playerName << "     " << Colours::Code::S_BRICHT_YELLOW << "     " << player.getTotal() << Colours::Code::DEFAULT << "\n";
 		if (!player.vCardsOnHand.empty())
 		{
-			/*for (std::vector<Card*>::const_iterator it = player.vCardsOnHand.begin(); it != player.vCardsOnHand.end(); ++it)
-			{
-				out << *(*it) << "   ";
-			}*/
             for (size_t i = 0; i < 6; i++)
             {
                 for (std::vector<Card*>::const_iterator it = player.vCardsOnHand.begin(); it != player.vCardsOnHand.end(); ++it)
@@ -88,6 +84,7 @@ protected:
                     }
                 }
                 out << std::endl;
+                
             }
 
 			if (player.isBoosted())
@@ -95,7 +92,7 @@ protected:
 		}
 		else
 		{
-			out << "No cards on hand.\n";
+			out << "No cards on hand.\n\n\n\n\n\n";
 		}
 		return out;
 	}

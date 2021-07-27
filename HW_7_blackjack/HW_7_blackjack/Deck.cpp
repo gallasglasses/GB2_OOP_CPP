@@ -42,17 +42,7 @@ void Deck::Deal(Hand& aHand)
 
 void Deck::AdditionalCards(GenericPlayer& aGenericPlayer)
 {
-	while (aGenericPlayer.isHitting() && !(aGenericPlayer.isBoosted()))
-	{
-		Deal(aGenericPlayer);
-		field.clearConsole();
-		//std::cout << "\x1B[2J\x1B[H";
-		std::cout << aGenericPlayer;
-		if (aGenericPlayer.isBoosted())
-		{
-			break;
-		}
-	}
+	Deal(aGenericPlayer);
 }
 
 Deck::~Deck()
