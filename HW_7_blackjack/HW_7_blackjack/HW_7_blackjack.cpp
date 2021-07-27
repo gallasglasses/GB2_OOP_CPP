@@ -28,10 +28,9 @@ int main()
     system("pause");
     //std::cout << "\x1B[2J\x1B[H";
     field.clearConsole();
+    field.menuMain();
     while (field.getContinue())
     {
-        field.menu();
-
         if (!field.getMenu() && !field.getContinue())
         {
             break;
@@ -56,14 +55,14 @@ int main()
             field.names.clear();
             field.clearConsole();
             field.setMenu();
-            field.menu();
+            field.menuMain();
             break;
         case 'N':
             newGame.~Game();
             field.names.clear();
             field.clearConsole();
             field.setMenu();
-            field.menu();
+            field.menuMain();
             break;
         default:
             continue;

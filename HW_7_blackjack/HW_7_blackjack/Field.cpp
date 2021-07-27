@@ -77,17 +77,16 @@ int Field::getMaxMPlayers() const
     return MAX_N_MPLAYERS;
 }
 
-void Field::menu()
+void Field::menuMain()
 {
-    while (isMenu)
+    do
     {
         clearConsole();
         std::cout << Colours::Code::S_BRICHT_GREEN << titleMenu() << Colours::Code::DEFAULT << "\n";
         switch (_getch())
         {
         case '1':
-            clearConsole();
-            std::cout << Colours::Code::S_BRICHT_GREEN << titlePlayer() << Colours::Code::DEFAULT << "\n";
+            menuPlayer();
             break;
         case '2':
             break;
@@ -101,6 +100,16 @@ void Field::menu()
         }
         if (!getMenu())
             break;
+    } while (isMenu);
+}
+
+void Field::menuPlayer()
+{
+    do
+    {
+        clearConsole();
+        std::cout << Colours::Code::S_BRICHT_GREEN << titlePlayer() << Colours::Code::DEFAULT << "\n";
+
         switch (_getch())
         {
         case '1':
@@ -119,13 +128,12 @@ void Field::menu()
             break;
         case '3':
             clearConsole();
-            std::cout << Colours::Code::S_BRICHT_GREEN << titleMenu() << Colours::Code::DEFAULT << "\n";
+            menuMain();
             break;
         default:
             break;
         }
-        
-    }
+    } while (isMenu);
 }
 
 std::vector<std::string> Field::vGetNamePlayers()
@@ -133,7 +141,6 @@ std::vector<std::string> Field::vGetNamePlayers()
     std::vector<std::string> names;
     int countPlayers = 0;
     bool isSetNames = true;
-    char answer;
     while (isSetNames)
     {
         std::string name;

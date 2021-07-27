@@ -109,7 +109,8 @@ public:
     void setMulti();
     void setMenu();
     void sizeConsole();
-    void menu();
+    void menuMain();
+    void menuPlayer();
 
     bool getContinue() const;
     bool getSingle() const;
