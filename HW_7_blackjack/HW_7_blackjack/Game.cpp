@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "Colours.h"
 
 Game::Game(std::vector<std::string>& vNamePlayers)
 {
@@ -125,7 +124,7 @@ void Game::Play()
 
 void Game::Print()
 {
-	field.clearConsole();
+	Console::clearConsole();
 	std::vector<Player>::iterator it;
 	std::cout << gameHandHouse << std::endl;
 	std::cout << std::setfill('*') << std::setw(30);

@@ -5,7 +5,7 @@
 #include <windows.h>
 #include <conio.h>
 
-#include "Validation.h"
+
 #include "Colours.h"
 #include "Field.h"
 #include "Game.h"
@@ -19,15 +19,12 @@
 Field field;
 
 int main()
-{
-    bool isContinue = true;
-    
-    field.sizeConsole();
-    std::cout << Colours::Code::S_BRICHT_YELLOW << field.titleBJ() << Colours::Code::DEFAULT << "\n";
+{    
+    Console::sizeConsole();
+    std::cout << Colours::Code::S_BRICHT_YELLOW << "\n" << field.titleBJ() << Colours::Code::DEFAULT << "\n";
     std::cout << "Press any key to continue...\n";
     system("pause");
-    //std::cout << "\x1B[2J\x1B[H";
-    field.clearConsole();
+    Console::clearConsole();
     field.menuMain();
     while (field.getContinue())
     {
@@ -39,28 +36,27 @@ int main()
         Game newGame(field.names);
         newGame.Play();
         std::cout << "\n";
-        //std::cout << "\x1B[2J\x1B[H";
                 
         std::cout << "Do you want play again?\nEnter 'Y' - Yes or 'N' - No : \n";
         switch (_getch())
         {
         case 'y':
-            field.clearConsole();
+            Console::clearConsole();
             continue;
         case 'Y':
-            field.clearConsole();
+            Console::clearConsole();
             continue;
         case 'n':
             newGame.~Game();
             field.names.clear();
-            field.clearConsole();
+            Console::clearConsole();
             field.setMenu();
             field.menuMain();
             break;
         case 'N':
             newGame.~Game();
             field.names.clear();
-            field.clearConsole();
+            Console::clearConsole();
             field.setMenu();
             field.menuMain();
             break;

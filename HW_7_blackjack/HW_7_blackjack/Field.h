@@ -1,11 +1,9 @@
 ﻿#pragma once
 #include <iostream>
 #include <sstream>
-#include <windows.h>
-#include <conio.h>
 #include <vector>
 
-#include "Validation.h"
+#include "Console.h"
 #include "Colours.h"
 
 class Field
@@ -99,6 +97,7 @@ public:
     std::string titleBJ();
     std::string titleMenu();
     std::string titlePlayer();
+
     std::vector<std::string> vGetNamePlayers();
     std::vector<std::string> names;
 
@@ -108,7 +107,6 @@ public:
     void setSingle();
     void setMulti();
     void setMenu();
-    void sizeConsole();
     void menuMain();
     void menuPlayer();
 
@@ -119,8 +117,6 @@ public:
     
     int getMaxSPlayers() const;
     int getMaxMPlayers() const;
-
-    void clearConsole();
 
     ~Field();
 };

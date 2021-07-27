@@ -13,6 +13,7 @@ public:
 	Hand();
 
 	int getTotal() const;
+
 	void Add(Card* card);
 	void Clear();
 

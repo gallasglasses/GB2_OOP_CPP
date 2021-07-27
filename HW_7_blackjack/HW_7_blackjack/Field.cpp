@@ -81,7 +81,7 @@ void Field::menuMain()
 {
     do
     {
-        clearConsole();
+        Console::clearConsole();
         std::cout << Colours::Code::S_BRICHT_GREEN << titleMenu() << Colours::Code::DEFAULT << "\n";
         switch (_getch())
         {
@@ -91,7 +91,6 @@ void Field::menuMain()
         case '2':
             break;
         case '3':
-            //clearConsole();
             setMenu();
             setContinue();
             break;
@@ -107,7 +106,7 @@ void Field::menuPlayer()
 {
     do
     {
-        clearConsole();
+        Console::clearConsole();
         std::cout << Colours::Code::S_BRICHT_GREEN << titlePlayer() << Colours::Code::DEFAULT << "\n";
 
         switch (_getch())
@@ -116,18 +115,18 @@ void Field::menuPlayer()
             setSingle();
             maxPlayers = getMaxSPlayers();
             names = vGetNamePlayers();
-            clearConsole();
+            Console::clearConsole();
             setMenu();
             break;
         case '2':
             setMulti();
             maxPlayers = getMaxMPlayers();
             names = vGetNamePlayers();
-            clearConsole();
+            Console::clearConsole();
             setMenu();
             break;
         case '3':
-            clearConsole();
+            Console::clearConsole();
             menuMain();
             break;
         default:
@@ -164,8 +163,7 @@ std::vector<std::string> Field::vGetNamePlayers()
 
         if (countPlayers == maxPlayers)
         {
-            clearConsole();
-            //std::cout << "\x1B[2J\x1B[H";
+            Console::clearConsole();
             isSetNames = false;
         }
         else if (countPlayers < maxPlayers)
@@ -190,39 +188,12 @@ std::vector<std::string> Field::vGetNamePlayers()
             }
             if (countPlayers < maxPlayers && !isSetNames)
             {
-                clearConsole();
-                //std::cout << "\x1B[2J\x1B[H";
+                Console::clearConsole();
                 break;
             }
         }
     }
     return names;
-}
-
-void Field::sizeConsole()
-{
-    HWND hwnd = GetConsoleWindow();
-    if (hwnd != NULL)
-    {
-        MoveWindow(hwnd, 150, 150, 950, 600, TRUE);
-    }
-}
-
-void Field::clearConsole() {
-    COORD topLeft = { 0, 0 };
-    HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
-    CONSOLE_SCREEN_BUFFER_INFO screen;
-    DWORD written;
-
-    GetConsoleScreenBufferInfo(console, &screen);
-    FillConsoleOutputCharacterA(
-        console, ' ', screen.dwSize.X * screen.dwSize.Y, topLeft, &written
-    );
-    FillConsoleOutputAttribute(
-        console, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE,
-        screen.dwSize.X * screen.dwSize.Y, topLeft, &written
-    );
-    SetConsoleCursorPosition(console, topLeft);
 }
 
 Field::~Field()
